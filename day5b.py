@@ -16,12 +16,9 @@ class Tower:
         self.cols = []
 
     def move(self, ne, src, dest):
-        #print("before", self.cols[src].elems, self.cols[dest].elems)
         crate = self.cols[src].elems[-ne:]
-        #print(ne,src,dest, crate)
         self.cols[dest].adds(crate)
         self.cols[src].elems = self.cols[src].elems[:-ne]
-        #print("after", self.cols[src].elems, self.cols[dest].elems)
     
     def add(self, e):
         self.cols.append(e)
@@ -39,10 +36,9 @@ tower = Tower()
 for e in headers:
     col = Stack()
     tower.add(col)
-# 1 1  2 5  3 9  4 13
+
 f = lambda x: x//4
 n = len(reader[0])
-
 
 for line in reader:
     if line[1] in "123456789":
@@ -51,7 +47,6 @@ for line in reader:
         if line[i] != " ":
             tower.cols[f(i)].add(line[i])
             
-
 for line in reader:
     if not line:
         continue

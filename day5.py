@@ -47,8 +47,6 @@ for line in reader:
             tower.cols[f(i)].add(line[i])
             
 
-# for e in tower.cols:
-#     print(e.elems)
 for line in reader:
     if not line:
         continue
