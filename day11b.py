@@ -11,17 +11,19 @@ class Monkey:
     def test(self, item):
         return item % self.test_number == 0
     
-    def throw(self, monkeys):
+    def throw(self, monkeys, product):
         for item in self.items.copy():
             self.count += 1
             new = self.operation(item)
-            new = new // 3
+            new = new % product
             
             if self.test(new):
                 self.items.remove(item)
+                
                 monkeys[self.to_true].items.append(new)
             else:
                 self.items.remove(item)
+                
                 monkeys[self.to_false].items.append(new)
         
 
@@ -56,12 +58,18 @@ for block in reader:
     monkey = Monkey(items,operation,number_test,true_to,false_to)
 
     monkeys.append(monkey)
-for _ in range(20):
+p = 1
+for m in monkeys:
+    p = p*m.test_number
+
+for _ in range(10000):
     for m in monkeys:
-        m.throw(monkeys)
+        m.throw(monkeys, p)
 
 monkey_counts = [x.count for x in monkeys]
 monkey_counts = sorted(monkey_counts, reverse=True)
+print(monkey_counts[0],monkey_counts[1])
+
 print(monkey_counts[0]*monkey_counts[1])
 
 
