@@ -53,7 +53,7 @@ for block in reader:
     false_to = int(inst[5].split()[-1])
     true_to = int(inst[4].split()[-1])
     
-    monkey = Monkey(items,operation,number_test,true_to,false_to)
+    monkey = Monkey(items, operation, number_test, true_to,false_to)
 
     monkeys.append(monkey)
 for _ in range(20):
